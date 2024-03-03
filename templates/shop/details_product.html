@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Details - {{ product.title }}  {% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="container col-xxl-8 px-4 py-5">
+                <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                    <div class="col-10 col-sm-8 col-lg-6">
+                        <img src="{{ product.img_uploaded.url }}" class="img-fluid border rounded-3 shadow-lg mb-4"
+                             alt="sorry" width="700" height="500" loading="lazy">
+                    </div>
+                    <div class="col-lg-6">
+                        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{ product.title }}</h1>
+                        <p class="card-text"><small class="text-body-secondary">This product was uploaded by: {{ product.first_name|title }} {{ product.last_name|title }}</small></p>
+                        <p class="text-body-secondary">Product Id:{{ product.id }}</p>
+                        <p class="rounded-pill bg-body-secondary text-center" style="max-width: 80px">In Stock</p>
+                        {{ product.title }} - ${{ product.price }}
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}

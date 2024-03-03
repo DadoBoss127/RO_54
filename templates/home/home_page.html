@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home  {% endblock %}
+
+{% block content %}
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="2000">
+                <img src="{% static 'images/img1.png' %}" class="d-block w-100" alt="sorry but the image not load">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Shine bright</h5>
+                    <p>Dazzle and delight with exquisite earrings that elevate your evening elegance.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="{% static 'images/img2.png' %}" class="d-block w-100" alt="sorry but the image not load">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Red carpet ready</h5>
+                    <p>Feel like a star with our glamorous jewelry designed for unforgettable moments.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="{% static 'images/img3.png' %}" class="d-block w-100" alt="sorry but the image not load">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Make a statement</h5>
+                    <p>Turn heads with sparkling earrings that capture the essence of a night out.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="{% static 'images/jewerly_in_hand.jpg' %}" class="img-fluid border rounded-3 shadow-lg mb-4"
+                     alt="sorry" width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Welcome to GemVida!</h1>
+                <p class="lead">Discover the magic of delicate, refined, and personalized jewelry at GemVida. Each piece
+                    in our collections is crafted with care and attention to detail, using the highest quality
+                    materials. From precious stones to precious metals, we pride ourselves on offering jewelry that is
+                    not only beautiful, but also durable.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a href="#" class="btn btn-primary btn-lg px-4 me-md-2" >Sign-up</a>
+                    <a href="#" class="btn btn-outline-secondary btn-lg px-4">Shop</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="px-4 pt-5 my-5 text-center">
+        <h1 class="display-4 fw-bold text-body-emphasis">Our Mission!</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Our mission at GemVida transcends simply selling beautiful trinkets. We aim to weave
+                the magic of exquisite jewelry into the very fabric of your life, offering pieces that become more than
+                just adornments, but cherished companions on your unique journey. Each carefully crafted jewel whispers
+                a story, waiting to be discovered and adopted as your own. With every sparkle, we celebrate your
+                individuality, empowering you to express your true self with confidence and grace.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                <a href="#" class="btn btn-primary btn-lg px-4 me-sm-3">Sign-Up</a>
+                <a href="#" class="btn btn-outline-secondary btn-lg px-4">Store</a>
+            </div>
+        </div>
+        <div class="overflow-hidden">
+            <div class="container px-5">
+                <img src="{% static 'images/mission.png' %}" class="img-fluid border rounded-3 shadow-lg mb-4"
+                     alt="sorry" width="700" height="500" loading="lazy">
+            </div>
+        </div>
+    </div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row align-items-center g-5 py-5">
+            <div class="col-lg-5">
+                <img src="{% static 'images/jewerly_box1.jpg' %}" class="img-fluid border rounded-3 shadow-lg mb-4"
+                     alt="sorry" width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Who we are?</h1>
+                <p class="lead">We are a team of jewelry enthusiasts who believe that every piece has a story to tell.
+                    We want to offer you a pleasant and memorable shopping experience, from discovering our collections
+                    online to receiving your jewelry at home.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a href="#" class="btn btn-primary btn-lg px-4 me-md-2">Sign-up</a>
+                    <a href="#" class="btn btn-outline-secondary btn-lg px-4">Shop</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom"><b>Why GemVida?</b></h1>
+
+        <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+            <div class="col d-flex flex-column align-items-start gap-2">
+                <h2 class="fw-bold text-body-emphasis">Crafted with Passion, Worn with Confidence</h2>
+                <p class="text-body-secondary">More than just sparkling stones, our jewelry is a testament to the
+                    artistry and expertise of our skilled artisans. We use only the finest materials and meticulous
+                    techniques to create pieces that are both beautiful and durable. Discover the GemVida difference and
+                    experience the confidence that comes with wearing handcrafted quality.</p>
+                <a href="#" class="btn btn-primary btn-lg">Sign-Up</a>
+            </div>
+
+            <div class="col">
+                <div class="row row-cols-1 row-cols-sm-2 g-4">
+                    <div class="col d-flex flex-column gap-2">
+                        <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                            <svg class="bi" width="1em" height="1em">
+                                <use xlink:href="#collection"/>
+                            </svg>
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">More than just jewelry</h4>
+                        <p class="text-body-secondary">GemVida offers a unique experience, weaving the magic of precious
+                            details into the story of your life. Each piece is a journey of emotions, a whisper of your
+                            individuality.</p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                            <svg class="bi" width="1em" height="1em">
+                                <use xlink:href="#gear-fill"/>
+                            </svg>
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Express yourself freely</h4>
+                        <p class="text-body-secondary">Our diverse collections cater to every style and personality.
+                            Discover jewelry that defines you, makes you shine, and fills you with confidence.</p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                            <svg class="bi" width="1em" height="1em">
+                                <use xlink:href="#collection"/>
+                            </svg>
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Exceptional quality</h4>
+                        <p class="text-body-secondary"> Our talented artisans create miniature works of art, using
+                            ethical and sustainable materials. Each piece is an investment in timeless beauty.</p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                            <svg class="bi" width="1em" height="1em">
+                                <use xlink:href="#table"/>
+                            </svg>
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Accessibility</h4>
+                        <p class="text-body-secondary">Luxury doesn't have to be a distant dream. At GemVida, you'll
+                            enjoy fair prices for jewelry of exceptional quality.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

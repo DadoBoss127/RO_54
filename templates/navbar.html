@@ -1,0 +1,47 @@
+{% load static %}
+<div class="bg-body-secondary">
+    <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="{% url 'home-page' %}" class="d-inline-flex link-body-emphasis text-decoration-none">
+{#          <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>#}
+            <img src="{% static 'images/gemvida.png' %}" class="bi" style="width: 49%">
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="{% url 'home-page' %}" class="nav-link px-2 link-secondary">Home</a></li>
+          <li><a href="#" class="nav-link px-2 nav-item dropdown">Features</a></li>
+          <li><a class="nav-link px-2 nav-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+            <ul class="dropdown-menu fs-5">
+                <li><a class="dropdown-item" href="{% url 'rings-products' %}" style="padding-bottom: 7px">Rings</a></li>
+                <li><a class="dropdown-item" href="#" style="padding-bottom: 7px">Necklaces</a></li>
+                <li><a class="dropdown-item" href="#" style="padding-bottom: 7px">Earrings</a></li>
+                <li><a class="dropdown-item" href="#" style="padding-bottom: 7px">Bracelets</a></li>
+                <li><a class="dropdown-item" href="#" style="padding-bottom: 7px">Anklets</a></li>
+                <li><a class="dropdown-item" href="#">Sets</a></li>
+            </ul></li>
+          
+        <li><a href="#" class="nav-link px-2">FAQs</a></li>
+        <li><a href="#" class="nav-link px-2">About</a></li>
+        <li><a href="{% url 'create-product' %}" class="nav-link px-2">Upload Product</a></li>
+      </ul>
+
+
+        {% if user.is_authenticated %}
+                
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-secondary">Logout, {{ user.username }}</button>
+            </form>
+        {% else %}
+              <div class="col-md-3 text-end">
+                <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
+                <a  href="{% url 'user-create' %}" class="btn btn-primary">Sign-up</a>
+              </div>
+            
+        {% endif %}
+</header>
+  </div>
+</div>
+  

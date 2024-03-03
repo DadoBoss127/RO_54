@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cart  {% endblock %}
+{% block content %}
+    <h1>Shopping Cart</h1>
+    <table>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+    {% for cart_item in cart_items %}
+      <tr>
+        <td>{{ cart_item.product.name }}</td>
+        <td>{{ cart_item.quantity }}</td>
+        <td>${{ cart_item.product.price * cart_item.quantity }}</td>
+      </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="2">Total</td>
+      <td>${{ total_price }}</td>
+    </tr>
+    </table>
+
+{% endblock %}
+
