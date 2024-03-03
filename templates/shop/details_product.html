@@ -13,20 +13,62 @@
                     </div>
                     <div class="col-lg-6">
                         <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{ product.title }}</h1>
-                        <p class="card-text"><small class="text-body-secondary">This product was uploaded by: {{ product.first_name|title }} {{ product.last_name|title }}</small></p>
+                        <p class="card-text"><small class="text-body-secondary">This product was uploaded
+                            by: {{ product.first_name|title }} {{ product.last_name|title }}</small></p>
                         <p class="text-body-secondary">Product Id:{{ product.id }}</p>
                         <p class="rounded-pill bg-body-secondary text-center" style="max-width: 80px">In Stock</p>
                         {{ product.title }} - ${{ product.price }}
-                        <form method="post" action="">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <button type="submit">Add to Cart</button>
-                        </form>
+                        <br><br>
+                        <div class="row justify-content-center">
+                            <div class="col-md-2">
+                                Quantity:
+                            </div>
+                            <div class="col-md-2">
+                                <select class="form-select" id="qty-cart">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br><br>
+                        <button type="button" value="{{ product.id }}" id="add-cart" class="btn btn-secondary">Add to
+                            cart
+                        </button>
                     </div>
-                    
+
                 </div>
             </div>
-            
+
         </div>
     </div>
+
+    <script>
+        $(document).on('click', '#add-cart', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'cart_add' %}',
+                data: {
+                    product_id: $('#add-cart').val(),
+                    product_qty: $('#qty-cart option:selected').text(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+
+                success: function (json) {
+                    //console.log(json)
+                    document.getElementById('cart_quantity').textContent = json.qty
+                },
+
+                error: function (xhr, errmsg, err) {
+
+                }
+            });
+        })
+
+    </script>
 {% endblock %}

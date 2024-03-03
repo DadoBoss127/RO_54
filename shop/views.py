@@ -5,7 +5,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic import ListView, CreateView, DetailView
 
 from shop.forms import ShopForm, AddToCartForm
-from shop.models import Shop, CartItem
+from shop.models import Shop
 
 
 class RingsListView(ListView):
@@ -35,25 +35,3 @@ class ProductDetailView(DetailView):
         return context
 
 
-def product_detail(request, product_id):
-    product = get_object_or_404(Shop, pk=product_id)
-
-    if request.method == 'POST':
-        form = AddToCartForm(request.POST)
-        if form.is_valid():
-            quantity = form.cleaned_data['quantity']
-            cart_item, created = CartItem.objects.get_or_create(product=product, defaults={'quantity': quantity})
-            if not created:
-                cart_item.quantity += quantity
-                cart_item.save()
-            return redirect('view_cart')
-    else:
-        form = AddToCartForm()
-
-    return render(request, 'shop/details_product.html', {'product': product, 'form': form})
-
-
-def view_cart(request):
-    cart_items = CartItem.objects.all()
-    total_price = sum(item.product.price * item.quantity for item in cart_items)
-    return render(request, 'mycart/view_cart.html', {'cart_items': cart_items, 'total_price': total_price})

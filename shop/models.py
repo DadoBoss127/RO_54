@@ -44,6 +44,3 @@ class Shop(models.Model):
         return f"{self.title}"
 
 
-class CartItem(models.Model):
-    product = models.ForeignKey(Shop, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
