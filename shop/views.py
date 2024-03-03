@@ -23,6 +23,7 @@ class ProductCreateView(CreateView):
     form_class = ShopForm
     success_url = reverse_lazy('home-page')
 
+#Am creat un views nou
 
 class ProductDetailView(DetailView):
     model = Shop
