@@ -10,7 +10,7 @@ from shop.models import Shop, CartItem
 
 class RingsListView(ListView):
     template_name = 'rings/shop_list_rings.html'
-    model = Shops
+    model = Shop
     context_object_name = 'all_rings_items'
 
     def get_queryset(self):
