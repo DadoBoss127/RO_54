@@ -10,3 +10,5 @@ urlpatterns = [
     path('product/<int:product_id>/', product_detail, name='product_detail'),
     path('view-cart/', view_cart, name='view_cart'),
 ]
+
+#Am adaugat o modificare
