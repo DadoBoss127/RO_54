@@ -10,7 +10,7 @@ from shop.models import Shop, CartItem
 
 class RingsListView(ListView):
     template_name = 'rings/shop_list_rings.html'
-    model = Shop
+    model = Shops
     context_object_name = 'all_rings_items'
 
     def get_queryset(self):
@@ -23,6 +23,7 @@ class ProductCreateView(CreateView):
     form_class = ShopForm
     success_url = reverse_lazy('home-page')
 
+#Am creat un views nou
 
 class ProductDetailView(DetailView):
     model = Shop
