@@ -9,17 +9,17 @@
                 <br><Br>
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Login</h2>
+                        <h2 class="text-center">Update Profile</h2>
                     </div>
-                    <form method="post">
+                    <form method="post" action="{% url 'user-update' %}">
                         {% csrf_token %}
                         <div class="card-body">
-                            {{ form }}
+                            {{ user_form }}
 {#                            <p>The username is <b>First Name + Last Name</b></p>#}
                         </div>
                         <div class="card-footer text-center">
-                            <button type="submit" class="btn btn-outline-success">Login</button>
-                            <a href="{% url 'update-password' %}" class="btn btn-outline-danger"> Forgot your password?</a>
+                            <button type="submit" class="btn btn-outline-success">Update Profile</button>
+                            <a href="{% url 'update-password' %}" class="btn btn-outline-secondary"> Update Password</a>
                         </div>
                     </form>
                 </div>

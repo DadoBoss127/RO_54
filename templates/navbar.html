@@ -1,47 +1,47 @@
-{% load static %}
-<div class="bg-body-secondary">
-    <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <div class="col-md-3 mb-2 mb-md-0">
-        <a href="{% url 'home-page' %}" class="d-inline-flex link-body-emphasis text-decoration-none">
-{#          <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>#}
-            <img src="{% static 'images/gemvida.png' %}" class="bi" style="width: 49%">
-        </a>
-      </div>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+{% load static %}
+  <header class="p-3 bg-body-secondary">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="col-md-3 mb-2 mb-md-0 d-flex align-items-center">
+            <a href="{% url 'home-page' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="{% static 'images/gemvida.png' %}" class="bi" style="width: 49%">
+            </a>
+        </div>
+      
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="{% url 'home-page' %}" class="nav-link px-2 link-secondary">Home</a></li>
           <li><a href="#" class="nav-link px-2 nav-item dropdown">Features</a></li>
           <li><a class="nav-link px-2 nav-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-            <ul class="dropdown-menu fs-5">
-                <li><a class="dropdown-item" href="{% url 'rings-products' %}" style="padding-bottom: 7px">Rings</a></li>
-                <li><a class="dropdown-item" href="#" style="padding-bottom: 7px">Necklaces</a></li>
-                <li><a class="dropdown-item" href="#" style="padding-bottom: 7px">Earrings</a></li>
-                <li><a class="dropdown-item" href="#" style="padding-bottom: 7px">Bracelets</a></li>
-                <li><a class="dropdown-item" href="#" style="padding-bottom: 7px">Anklets</a></li>
-                <li><a class="dropdown-item" href="#">Sets</a></li>
+            <ul class="dropdown-menu fs-6">
+                <li><a class="nav-link px-2 nav-item dropdown" href="{% url 'rings-products' %}" style="padding-bottom: 7px">Rings</a></li>
+                <li><a class="nav-link px-2 nav-item dropdown" href="#" style="padding-bottom: 7px">Necklaces</a></li>
+                <li><a class="nav-link px-2 nav-item dropdown" href="#" style="padding-bottom: 7px">Earrings</a></li>
+                <li><a class="nav-link px-2 nav-item dropdown" href="#" style="padding-bottom: 7px">Bracelets</a></li>
+                <li><a class="nav-link px-2 nav-item dropdown" href="#" style="padding-bottom: 7px">Anklets</a></li>
+                <li><a class="nav-link px-2 nav-item dropdown" href="#">Sets</a></li>
             </ul></li>
-          
+
         <li><a href="#" class="nav-link px-2">FAQs</a></li>
         <li><a href="#" class="nav-link px-2">About</a></li>
         <li><a href="{% url 'create-product' %}" class="nav-link px-2">Upload Product</a></li>
+          {% if user.is_authenticated %}
+              <li><a class="nav-link px-2 nav-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                <ul class="dropdown-menu fs-6">
+                    <li><a class="nav-link px-2 nav-item dropdown" href="{% url "user-update" %}" style="padding-bottom: 7px">User Profile</a></li>
+                    <li><a class="nav-link px-2 nav-item dropdown" href="{% url "update-info" %}">User Info</a></li>
+                </ul>
+              </li>
+              <a class="nav-link px-2 nav-item dropdown" href="{% url "user-update" %}">Profile</a>
+          {% endif %}
       </ul>
-
-
-        {% if user.is_authenticated %}
-                
-            <form method="post" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-outline-secondary">Logout, {{ user.username }}</button>
-            </form>
-        {% else %}
-              <div class="col-md-3 text-end">
-                <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
-                <a  href="{% url 'user-create' %}" class="btn btn-primary">Sign-up</a>
-              </div>
-            
-        {% endif %}
+      
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            {% csrf_token %}
+          <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search" name="searched">
+        </form>
         <form class="d-flex">
+            {% csrf_token %}
             <a class="btn btn-outline-dark" href="{% url 'cart_summary' %}">
                 <b>                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                   <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
@@ -51,7 +51,12 @@
                 <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
             </a>
         </form>
-    </header>
-  </div>
-</div>
+        <div class="container d-flex justify-content-center">
+          <button type="button" class="btn btn-outline-primary me-2">Login</button>
+          <button type="button" class="btn btn-warning">Sign-up</button>
+        </div>
+      </div>
+    </div>
   
+  </header>
+<br><br>

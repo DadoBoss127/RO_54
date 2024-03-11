@@ -48,7 +48,10 @@
                                     </div>
                                     <br><br>
                                     <button type="button" data-index="{{ product.id }}"
-                                            class="btn btn-secondary " id="update-cart">Update
+                                            class="btn btn-secondary update-cart">Update
+                                    </button>
+                                    <button type="button" data-index="{{ product.id }}"
+                                            class="btn btn-danger delete-product" >Remove
                                     </button>
                                 </div>
 
@@ -58,6 +61,8 @@
                     </div>
                 </div>
             {% endfor %}
+            <br>
+            <h3><b>Total: ${{ totals }}</b></h3>
         {% else %}
             <h1>There is nothing in your cart</h1>
         {% endif %}
@@ -65,7 +70,8 @@
 
 
     <script>
-        $(document).on('click', '#update-cart', function(e) {
+    ///Update Cart
+        $(document).on('click', '.update-cart', function(e) {
             e.preventDefault();
             var productid = $(this).data('index');
             $.ajax({
@@ -73,7 +79,32 @@
                 url: '{% url 'cart_update' %}',
                 data: {
                     product_id: $(this).data('index'),
-                    product_qty: $('#select' + productid + 'option:selected').text(),
+                    product_qty: $('#select' + productid + ' option:selected').text(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+
+                success: function (json) {
+                    //console.log(json)
+                    //document.getElementById('cart_quantity').textContent = json.qty
+                    location.reload();
+                },
+
+                error: function (xhr, errmsg, err) {
+
+                }
+            });
+        })
+
+        ///Delete Cart
+        $(document).on('click', '.delete-product', function(e) {
+            e.preventDefault();
+            //var productid = $(this).data('index');
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'cart_delete' %}',
+                data: {
+                    product_id: $(this).data('index'),
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                     action: 'post'
                 },
