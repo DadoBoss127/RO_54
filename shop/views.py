@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -6,8 +7,10 @@ from django.urls import reverse_lazy
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView, CreateView, DetailView
 
+from cart.cart import Cart
 from shop.forms import ShopForm, AddToCartForm
 from shop.models import Shop, Profile
+import json
 
 
 class RingsListView(ListView):
@@ -47,5 +50,7 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile.save()
 
 post_save.connect(create_profile, sender=User)
+
+
 
 

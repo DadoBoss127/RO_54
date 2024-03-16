@@ -59,7 +59,7 @@ class UserInfoForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = '__all__'
-        exclude = ['user']
+        exclude = ['user', 'old_cart']
         widgets = {
             'phone': forms.Textarea(
                 attrs={'class': 'form-control', 'rows': 1, 'placeholder': 'Your phone number', 'required': True}),

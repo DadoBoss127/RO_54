@@ -32,7 +32,7 @@
                     <li><a class="nav-link px-2 nav-item dropdown" href="{% url "update-info" %}">User Info</a></li>
                 </ul>
               </li>
-              <a class="nav-link px-2 nav-item dropdown" href="{% url "user-update" %}">Profile</a>
+{#              <a class="nav-link px-2 nav-item dropdown" href="{% url "user-update" %}">Profile</a>#}
           {% endif %}
       </ul>
       
@@ -55,13 +55,13 @@
           <div class="container d-flex justify-content-center">
                <form method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-primary me-2">Logout, {{ user.username }}</button>
+                    <a href="{% url 'logout_user' %}" class="btn btn-outline-primary me-2">Logout, {{ user.username }}</a>
                 </form>
           </div>
            
       {% else %}
           <div class="container d-flex justify-content-center">
-              <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
+              <a href="{% url 'login_user' %}" class="btn btn-outline-primary me-2">Login</a>
               <a href="{% url 'user-create' %}" class="btn btn-warning">Sign-up</a>
           </div>
       {% endif %}

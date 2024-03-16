@@ -10,14 +10,12 @@ def payment_success(request):
 
 def payment_checkout(request):
     if request.user.is_authenticated:
-        shipping_user = ShippingAddress.objects.get(id=request.user.id)
+        profile = request.user.profile
+        shipping_user, created = ShippingAddress.objects.get_or_create(user=profile)
         shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
         if shipping_form.is_valid():
             shipping_form.save()
-
-            # messages.success(request, 'User updated successfully!')
             return redirect('home-page')
         return render(request, 'payment/payment_checkout.html', {'shipping_form': shipping_form})
     else:
-        # messages.success(request, 'You must be logged to access this page.')
         return redirect('home-page')
