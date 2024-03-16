@@ -51,10 +51,21 @@
                 <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
             </a>
         </form>
-        <div class="container d-flex justify-content-center">
-          <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
-          <a href="{% url 'user-create' %}" class="btn btn-warning">Sign-up</a>
-        </div>
+      {% if user.is_authenticated %}
+          <div class="container d-flex justify-content-center">
+               <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-primary me-2">Logout, {{ user.username }}</button>
+                </form>
+          </div>
+           
+      {% else %}
+          <div class="container d-flex justify-content-center">
+              <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
+              <a href="{% url 'user-create' %}" class="btn btn-warning">Sign-up</a>
+          </div>
+      {% endif %}
+
       </div>
     </div>
   

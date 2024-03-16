@@ -26,7 +26,7 @@ class Cart():
 
         self.session.modified = True
 
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             current_user = Profile.objects.filter(user__id=self.request.user.id)
             carty = str(self.cart)
             carty = carty.replace("\'","\"")
