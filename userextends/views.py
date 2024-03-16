@@ -4,7 +4,8 @@ from django.core.checks import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-
+from payment.forms import ShippingForm
+from payment.models import ShippingAddress
 from shop.models import Profile
 from userextends.forms import UserForm, UpdateUserForm, ChangePasswordForm, UserInfoForm
 
@@ -56,14 +57,15 @@ def update_password(request):
 def update_info(request):
     if request.user.is_authenticated:
         current_user = Profile.objects.get(user__id=request.user.id)
+        shipping_user = ShippingAddress.objects.get(id=request.user.id)
         form = UserInfoForm(request.POST or None, instance=current_user)
-
+        shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
         if form.is_valid():
             form.save()
 
             # messages.success(request, 'User updated successfully!')
             return redirect('home-page')
-        return render(request, 'registration/update_info.html', {'form': form})
+        return render(request, 'registration/update_info.html', {'form': form, 'shipping_form' : shipping_form})
     else:
         # messages.success(request, 'You must be logged to access this page.')
         return redirect('home-page')
