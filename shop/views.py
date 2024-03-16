@@ -1,11 +1,13 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView, CreateView, DetailView
 
 from shop.forms import ShopForm, AddToCartForm
-from shop.models import Shop
+from shop.models import Shop, Profile
 
 
 class RingsListView(ListView):
@@ -37,5 +39,13 @@ class ProductDetailView(DetailView):
 
 def search(request):
     pass
+
+
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        user_profile = Profile(user=instance)
+        user_profile.save()
+
+post_save.connect(create_profile, sender=User)
 
 
