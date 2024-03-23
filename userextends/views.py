@@ -96,6 +96,7 @@ def login_user(request):
         else:
             messages.success(request, 'There was an error please try again')
             return redirect('registration/login.html')
+            # return render(request, 'registration/login.html')
     else:
         return render(request, 'registration/login.html')
 

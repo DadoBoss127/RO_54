@@ -14,6 +14,13 @@ class Cart():
 
         self.cart = cart
 
+        # self.session = request.session
+        # cart_key = 'cart'
+        # self.cart = self.session.get(cart_key)
+        # if not self.cart:
+        #     self.cart = {}
+        #     self.session[cart_key] = self.cart
+
     def db_add(self, product, quantity):
         product_id = str(product)
         product_qty = str(quantity)
@@ -106,3 +113,9 @@ class Cart():
                         total = total + (product.price * Decimal(value))
 
         return total
+
+    def clear(self):
+        if 'cart' in self.session:
+            del self.session['cart']  # Remove cart data from the session only if it exists
+        self.cart = {}  # Reset cart instance variable
+        self.session.modified = True

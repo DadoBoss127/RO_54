@@ -4,5 +4,6 @@ from payment import views
 
 urlpatterns = [
     path('payment_success/', views.payment_success, name='payment_success'),
+    path('payment_checkout_form/', views.payment_checkout_form, name='payment_checkout_form'),
     path('payment_checkout/', views.payment_checkout, name='payment_checkout')
 ]
