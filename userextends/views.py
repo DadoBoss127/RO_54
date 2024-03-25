@@ -75,30 +75,36 @@ def update_info(request):
         return redirect('home-page')
 
 
+
 def login_user(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'You have been logged in')
-            current_user = Profile.objects.get(user__id=request.user.id)
-            saved_cart = current_user.old_cart
-
-            if saved_cart:
-                converted_cart = json.loads(saved_cart)
-                cart = Cart(request)
-                for key, value in converted_cart.items():
-                    cart.db_add(product=key, quantity=value)
-
-            return redirect('home-page')
-        else:
-            messages.success(request, 'There was an error please try again')
-            return redirect('registration/login.html')
-            # return render(request, 'registration/login.html')
+        try:
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'You have been logged in')
+                try:
+                    current_user = Profile.objects.get(user__id=request.user.id)
+                    saved_cart = current_user.old_cart
+                    if saved_cart:
+                        converted_cart = json.loads(saved_cart)
+                        cart = Cart(request)
+                        for key, value in converted_cart.items():
+                            cart.db_add(product=key, quantity=value)
+                except Profile.DoesNotExist:
+                    messages.error(request, 'User does not have a profile')
+                return redirect('home-page')
+            else:
+                messages.error(request, 'Invalid username or password')
+                return redirect('login')
+        except Exception as e:
+            messages.error(request, 'There was an unexpected error. Please try again.')
+            return redirect('login')
     else:
         return render(request, 'registration/login.html')
+
 
 
 def logout_user(request):
